@@ -1,0 +1,50 @@
+---
+import Container from "@/components/container.astro";
+import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+import logo from "@/assets/logo_title_white.svg";
+
+const menuitems = [
+  { title: "Home", path: "/" },  
+  { title: "RF Hunter", path: "/products/rf-hunter" },
+  { title: "D-Byte", path: "/products/usb-d-byte" },
+  { title: "About", path: "/about" },
+  { title: "Docs", path: "https://docs.rdhrobotics.in" },
+  { title: "Blog", path: "/blog" },
+  { title: "Contact", path: "/contact" },
+];
+---
+
+<Container>
+  <header class="flex flex-col gap-4 py-5 lg:flex-row lg:items-center lg:justify-between">
+    <Astronav>
+      <div class="flex w-full items-center justify-between gap-6">
+        <a href="/" class="inline-flex items-center" aria-label="RDH Robotics home">
+          <img
+            src={logo.src}
+            alt="RDH Robotics"
+            class="h-8 w-auto brightness-0"
+          />
+        </a>
+        <div class="block lg:hidden">
+          <MenuIcon class="h-5 w-5 text-neutral-900" />
+        </div>
+      </div>
+      <MenuItems class="hidden w-full lg:flex lg:w-auto lg:items-center">
+        <ul
+          class="mt-5 flex flex-col border-t border-neutral-200 pt-4 lg:mt-0 lg:flex-row lg:border-0 lg:pt-0">
+          {
+            menuitems.map((item) => (
+              <li>
+                <a
+                  href={item.path}
+                  class="block whitespace-nowrap py-2 text-sm font-medium text-neutral-600 transition hover:text-neutral-950 lg:px-3">
+                  {item.title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </MenuItems>
+    </Astronav>
+  </header>
+</Container>

@@ -1,0 +1,88 @@
+---
+import Container from "@/components/container.astro";
+import Layout from "@/layouts/Layout.astro";
+import { Image } from "astro:assets";
+import logo from "@/assets/logo_title_white.svg";
+import rfHunter from "@/assets/rf-hunter.png";
+import usbDByte from "@/assets/1.png";
+
+const products = [
+  {
+    name: "RF Hunter",
+    href: "/products/rf-hunter",
+    image: rfHunter,
+    text: "Standalone wireless security research platform with OLED UI, keypad controls, and web admin access.",
+  },
+  {
+    name: "USB D-Byte",
+    href: "/products/usb-d-byte",
+    image: usbDByte,
+    text: "Thumb-drive-sized RP2040 development board for HID automation, prototyping, and embedded experiments.",
+  },
+];
+---
+
+<Layout
+  title="RDH Robotics: IoT, Embedded Systems & Cyber Security Tools"
+  description="RDH Robotics specializes in cutting-edge IoT devices, embedded systems, and educational cyber security tools for industries, innovators, and security professionals."
+>
+  <Container class="pt-16">
+    <section class="mx-auto flex min-h-[58vh] max-w-3xl flex-col items-center justify-center text-center">
+      <img
+        src={logo.src}
+        alt="RDH Robotics Logo"
+        class="h-auto w-72 max-w-full brightness-0 md:w-96"
+      />
+      <p class="mt-8 text-xl font-medium leading-relaxed text-neutral-700 md:text-2xl">
+        Embedded Systems, IoT Devices &amp; Educational Cyber Security Tools
+      </p>
+      <div class="mt-10 flex flex-wrap justify-center gap-3">
+        <a href="/products" class="rounded-sm bg-neutral-950 px-6 py-3 font-medium text-white transition hover:bg-neutral-800">
+          Products
+        </a>
+        <a href="https://docs.rdhrobotics.in" class="rounded-sm border border-neutral-300 px-6 py-3 font-medium text-neutral-900 transition hover:border-neutral-950">
+          Documentation
+        </a>
+        <a href="/contact" class="rounded-sm border border-neutral-300 px-6 py-3 font-medium text-neutral-900 transition hover:border-neutral-950">
+          Contact
+        </a>
+      </div>
+      <div class="mt-8 flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm font-medium text-neutral-600">
+        <a href="https://github.com/rdhrobotics" class="hover:text-neutral-950">GitHub</a>
+        <a href="https://instagram.com/rdhrobotics" class="hover:text-neutral-950">Instagram</a>
+        <a href="https://x.com/rdhrobotics" class="hover:text-neutral-950">X</a>
+        <a href="mailto:rdhrobotics@hotmail.com" class="hover:text-neutral-950">Email</a>
+      </div>
+
+    </section>
+
+    <section id="products" class="border-t border-neutral-200 py-16">
+      <div class="mb-8 flex items-end justify-between gap-4">
+        <div>
+          <p class="text-sm font-medium uppercase tracking-wide text-neutral-500">Products</p>
+          <h2 class="mt-2 text-3xl font-semibold tracking-tight">Focused hardware for builders and researchers.</h2>
+        </div>
+        <a href="/products" class="hidden text-sm font-medium text-neutral-600 hover:text-neutral-950 md:block">View all</a>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2">
+        {
+          products.map((product) => (
+            <a href={product.href} class="group block border border-neutral-200 p-4 transition hover:border-neutral-950">
+              <div class="bg-neutral-100">
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  width={720}
+                  height={540}
+                  class="aspect-[4/3] w-full object-contain transition duration-300 group-hover:scale-[1.01]"
+                />
+              </div>
+              <h3 class="mt-5 text-2xl font-semibold">{product.name}</h3>
+              <p class="mt-2 max-w-xl leading-7 text-neutral-600">{product.text}</p>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+  </Container>
+</Layout>

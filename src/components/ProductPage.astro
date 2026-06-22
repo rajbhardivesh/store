@@ -1,0 +1,210 @@
+---
+import { Image } from "astro:assets";
+
+interface Variant {
+  name: string;
+  price: number;
+}
+
+interface Spec {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  image: ImageMetadata;
+  gallery?: ImageMetadata[];
+  variants: Variant[];
+  intro: string;
+  sections: { title: string; body: string[] }[];
+  specs: Spec[];
+  note?: string;
+}
+
+const {
+  title,
+  subtitle,
+  image,
+  gallery = [],
+  variants,
+  intro,
+  sections,
+  specs,
+  note,
+} = Astro.props;
+
+const defaultVariant = variants[0];
+const allImages = [image, ...gallery];
+---
+
+<main class="mx-auto max-w-(--breakpoint-xl) px-5">
+  <div class="border-t border-neutral-200 py-10 lg:grid lg:grid-cols-[minmax(0,1.35fr)_minmax(360px,0.65fr)] lg:gap-12">
+    <section>
+      <div class="bg-neutral-100">
+        <Image
+          src={image}
+          alt={title}
+          width={1100}
+          height={825}
+          class="aspect-[4/3] w-full object-contain"
+          loading="eager"
+          id="main-product-image"
+        />
+      </div>
+
+      {
+        allImages.length > 1 && (
+          <div class="mt-4 grid grid-cols-4 gap-3">
+            {allImages.map((item, index) => (
+              <button type="button" class="bg-neutral-100 block" data-gallery-item>
+                <Image
+                  src={item}
+                  alt={`${title} - gallery image ${index + 1}`}
+                  width={260}
+                  height={260}
+                  class="aspect-square w-full object-cover"
+                  data-image-src={item.src}
+                />
+              </button>
+            ))}
+          </div>
+        )
+      }
+    </section>
+
+    <aside class="mt-8 lg:mt-6">
+      <div class="lg:sticky lg:top-6">
+        <p class="text-sm font-medium text-neutral-500">RDH Robotics</p>
+        <h1 class="mt-2 text-4xl font-semibold leading-tight tracking-tight text-neutral-900">
+          {title}
+        </h1>
+        {subtitle && <p class="mt-3 text-lg text-neutral-600">{subtitle}</p>}
+        <p
+          id="product-price"
+          class="mt-5 border-b border-neutral-200 pb-8 text-xl font-medium text-neutral-900"
+          data-price={defaultVariant.price}>
+          Rs. {defaultVariant.price.toLocaleString("en-IN")}.00
+        </p>
+
+        <div class="mt-8">
+          <p class="text-sm font-medium text-neutral-700">Variant pricing</p>
+          <div
+            id="variant-options"
+            class="mt-3 grid gap-3 sm:grid-cols-2"
+            data-product={title}>
+            {
+              variants.map((variant, index) => (
+                <button
+                  type="button"
+                  data-variant-button
+                  data-name={variant.name}
+                  data-price={variant.price}
+                  class:list={[
+                    "rounded-sm border px-4 py-3 text-sm font-medium transition",
+                    index === 0
+                      ? "border-neutral-950 bg-neutral-950 text-white"
+                      : "border-neutral-200 bg-white text-neutral-700 hover:border-neutral-950",
+                  ]}>
+                  {variant.name}
+                </button>
+              ))
+            }
+          </div>
+        </div>
+
+        <a
+          id="buy-link"
+          href="#"
+          class="mt-6 block rounded-sm bg-neutral-950 px-6 py-4 text-center font-medium text-white transition hover:bg-neutral-800">
+          Buy Now
+        </a>
+
+        <div class="prose prose-neutral mt-8 max-w-none">
+          <p><strong>{intro}</strong></p>
+          {
+            sections.map((section) => (
+              <>
+                <h2>{section.title}</h2>
+                {section.body.map((paragraph) => <p>{paragraph}</p>)}
+              </>
+            ))
+          }
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <section class="grid gap-10 border-t border-neutral-200 py-12 lg:grid-cols-[0.35fr_0.65fr]">
+    <div>
+      <p class="text-sm font-medium uppercase tracking-wide text-neutral-500">Specifications</p>
+      <h2 class="mt-2 text-3xl font-semibold tracking-tight">Technical details</h2>
+    </div>
+    <dl class="grid gap-x-8 gap-y-5 sm:grid-cols-2">
+      {
+        specs.map((spec) => (
+          <div class="border-b border-neutral-200 pb-4">
+            <dt class="text-sm font-medium text-neutral-500">{spec.label}</dt>
+            <dd class="mt-1 text-neutral-950">{spec.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  {
+    note && (
+      <section class="border-t border-neutral-200 py-8">
+        <p class="max-w-4xl text-sm leading-6 text-neutral-500">{note}</p>
+      </section>
+    )
+  }
+</main>
+
+<script is:inline>
+  const buttons = Array.from(document.querySelectorAll("[data-variant-button]"));
+  const price = document.getElementById("product-price");
+  const buyLink = document.getElementById("buy-link");
+  const options = document.getElementById("variant-options");
+
+  function setVariant(button) {
+    buttons.forEach((item) => {
+      item.classList.remove("border-neutral-950", "bg-neutral-950", "text-white");
+      item.classList.add("border-neutral-200", "bg-white", "text-neutral-700");
+    });
+
+    button.classList.add("border-neutral-950", "bg-neutral-950", "text-white");
+    button.classList.remove("border-neutral-200", "bg-white", "text-neutral-700");
+
+    const variantName = button.dataset.name;
+    const variantPrice = Number(button.dataset.price);
+    const productName = options.dataset.product;
+
+    price.textContent = `Rs. ${variantPrice.toLocaleString("en-IN")}.00`;
+
+    const message = `Hi RDH Robotics,\nI Want "${productName}"\n${variantName}\nPrice : ${variantPrice}`;
+    buyLink.href = `https://wa.me/917016815755?text=${encodeURIComponent(message)}`;
+  }
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => setVariant(button));
+  });
+
+  if (buttons[0]) setVariant(buttons[0]);
+
+  // Image gallery logic
+  const mainImage = document.getElementById("main-product-image");
+  const galleryItems = document.querySelectorAll("[data-gallery-item]");
+
+  function setMainImage(item) {
+    const imageElement = item.querySelector("img");
+    if (mainImage && imageElement) {
+      mainImage.src = imageElement.dataset.imageSrc || imageElement.src;
+    }
+  }
+
+  galleryItems.forEach((item) => {
+    item.addEventListener("click", () => setMainImage(item));
+  });
+</script>

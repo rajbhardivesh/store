@@ -1,0 +1,65 @@
+---
+import ProductPage from "@/components/ProductPage.astro";
+import Layout from "@/layouts/Layout.astro";
+import usbHero from "@/assets/1.png";
+import usbClose from "@/assets/2.png";
+import usbAngle from "@/assets/3.png";
+
+const sections = [
+  {
+    title: "Small board, direct workflow",
+    body: [
+      "USB D-Byte is a thumb-drive-sized RP2040 development board designed for HID automation, embedded prototyping, learning, and security lab experiments.",
+      "It plugs directly into a USB-A port and can emulate keyboards, mass storage, and other HID devices depending on the firmware you load.",
+    ],
+  },
+  {
+    title: "Built for education and automation",
+    body: [
+      "Use it for rapid microcontroller projects, payload testing in authorized labs, classroom demos, and compact automation tools.",
+      "The simple physical format makes it easy to carry, test, reflash, and reuse across development workflows.",
+    ],
+  },
+  {
+    title: "What's in the box",
+    body: [
+      "USB D-Byte board.",
+      "Quick-start reference for setup and flashing.",
+    ],
+  },
+];
+
+
+
+
+
+const specs = [
+  { label: "Dimensions", value: "47mm × 18mm × 8mm" },
+  { label: "Processor", value: "Dual-core 32-bit CPU @ 133 MHz" },
+  { label: "Storage", value: "16MB SPI Flash" },
+  { label: "Mode Switch", value: "2-Position (Attack & Setup)" },
+  { label: "Connector", value: "USB-A Plug" },
+  { label: "Controls", value: "Reset & Boot Button" },
+];
+---
+
+<Layout
+  title="USB D-Byte - RP2040 Development Board | RDH Robotics"
+  description="The USB D-Byte is a compact RP2040 development board for HID automation, embedded prototyping, and security experiments. Thumb-drive-sized for portability and ease of use."
+>
+  <ProductPage
+    title="USB D-Byte"
+    subtitle="Compact RP2040 USB development board"
+    image={usbHero}
+    gallery={[usbClose, usbAngle]}
+    variants={[
+      { name: "4MB", price: 849 },
+      { name: "8MB", price: 999 },
+      { name: "16MB", price: 1099 },
+    ]}
+    intro="A compact USB development board for embedded experiments and automation."
+    sections={sections}
+    specs={specs}
+    note="Use only in systems you own or have permission to test. RDH Robotics products are intended for education, research, and authorized development."
+  />
+</Layout>

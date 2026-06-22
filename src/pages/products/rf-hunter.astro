@@ -1,0 +1,64 @@
+---
+import ProductPage from "@/components/ProductPage.astro";
+import Layout from "@/layouts/Layout.astro";
+import rfHunter from "@/assets/rf-hunter.png";
+
+const sections = [
+  {
+    title: "Three research modules",
+    body: [
+      "RF-Hunter: nRF24 constant carrier jammer for BLE + all 2.4 GHz or Wi-Fi channels only.",
+      "Deauther Suite: powered by the open-source spacehuhn deauther engine. Scan, select, deauth, beacon flood, and probe attack.",
+      "WiPhi: Deauth + EvilTwin + captive portal credential harvester with EEPROM vault.",
+    ],
+  },
+  {
+    title: "Standalone controls",
+    body: [
+      "Everything is controlled from the 128x64 OLED display and keypad, or from any phone or laptop via the built-in web admin panel at 192.168.4.1. Captured data saves to onboard EEPROM and survives power cycles.",
+      "The firmware is fully open source. All three tools share a clean, consistent menu UI. Adding new research modules takes three lines of code.",
+    ],
+  },
+  {
+    title: "What's in the box",
+    body: [
+      "RF-Hunter assembled and tested unit.",
+      "Quick-start card with default AP credentials and web UI address.",
+    ],
+  },
+];
+
+const specs = [
+  { label: "MCU", value: "ESP8266 @ 80/160 MHz, 2.4 GHz Wi-Fi" },
+  { label: "RF module", value: "nRF24L01+ PA+LNA" },
+  { label: "Display", value: "1.3 OLED," },
+  { label: "Input", value: "6-button keypad" },
+  { label: "Storage", value: "EEPROM with 5-slot credential vault" },
+  { label: "Interface", value: "OLED UI + web admin panel, simultaneous" },
+  { label: "Battery", value: "800 Mah 3.7V Li-Polymer" },
+  { label: "Connection", value: "USB C" },
+  { label: "Charging", value: "Built-in Charging" },
+
+  { label: "Firmware", value: "Open source, Arduino/ESP8266 toolchain" },
+
+];
+---
+
+<Layout
+  title="RF Hunter - Wireless Security Research Tool | RDH Robotics"
+  description="The RF Hunter is a standalone wireless security research platform with deauther, jammer, and evil twin capabilities. Perfect for hands-on education and authorized security testing."
+>
+  <ProductPage
+    title="RF Hunter"
+    subtitle="Deauth. Jam. Capture. All Standalone"
+    image={rfHunter}
+    variants={[
+      { name: "Fully Assembled", price: 1899 },
+      { name: "Fully Assembled + Case", price: 1999 },
+    ]}
+    intro="Learn wireless security hands-on with a device built for it."
+    sections={sections}
+    specs={specs}
+    note="For use only on networks and devices you own or have explicit written permission to test. Unauthorized use against third-party networks is illegal. This device is sold for educational and authorized security research purposes only."
+  />
+</Layout>

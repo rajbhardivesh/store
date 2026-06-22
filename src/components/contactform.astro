@@ -1,0 +1,98 @@
+<form
+  id="form"
+  class="needs-validation rounded-sm border border-neutral-200 p-5"
+  novalidate>
+  <div class="mb-5">
+    <label for="name" class="mb-2 block text-sm font-medium text-neutral-800">Name</label>
+    <input
+      id="name"
+      type="text"
+      placeholder="Full Name"
+      required
+      class="w-full rounded-sm border border-neutral-300 px-4 py-3 outline-hidden transition placeholder:text-neutral-400 focus:border-neutral-950 focus:ring-4 focus:ring-neutral-100"
+      name="name"
+    />
+    <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">
+      Please provide your full name.
+    </div>
+  </div>
+  <div class="mb-5">
+    <label for="email_address" class="mb-2 block text-sm font-medium text-neutral-800">Email Address</label><input
+      id="email_address"
+      type="email"
+      placeholder="Email Address"
+      name="email"
+      required
+      class="w-full rounded-sm border border-neutral-300 px-4 py-3 outline-hidden transition placeholder:text-neutral-400 focus:border-neutral-950 focus:ring-4 focus:ring-neutral-100"
+    />
+    <div class="empty-feedback text-red-400 text-sm mt-1">
+      Please provide your email address.
+    </div>
+    <div class="invalid-feedback text-red-400 text-sm mt-1">
+      Please provide a valid email address.
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="message" class="mb-2 block text-sm font-medium text-neutral-800">Message</label>
+    <textarea
+      id="message"
+      name="message"
+      required
+      placeholder="Your Message"
+      class="h-36 w-full rounded-sm border border-neutral-300 px-4 py-3 outline-hidden transition placeholder:text-neutral-400 focus:border-neutral-950 focus:ring-4 focus:ring-neutral-100"
+    ></textarea>
+    <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">
+      Please enter your message.
+    </div>
+  </div>
+  <button
+    type="submit"
+    class="w-full rounded-sm bg-neutral-950 px-6 py-3 text-center font-medium text-white transition hover:bg-neutral-800">
+    Send Message
+  </button>
+  <div id="result" class="mt-3 text-center text-sm text-neutral-500"></div>
+</form>
+
+<style>
+  .invalid-feedback,
+  .empty-feedback {
+    display: none;
+  }
+
+  .was-validated :placeholder-shown:invalid ~ .empty-feedback {
+    display: block;
+  }
+
+  .was-validated :not(:placeholder-shown):invalid ~ .invalid-feedback {
+    display: block;
+  }
+
+  .is-invalid,
+  .was-validated :invalid {
+    border-color: #dc3545;
+  }
+</style>
+
+<script is:inline>
+  const form = document.getElementById("form");
+  const result = document.getElementById("result");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    form.classList.add("was-validated");
+    if (!form.checkValidity()) {
+      form.querySelectorAll(":invalid")[0].focus();
+      return;
+    }
+    const formData = new FormData(form);
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const message = formData.get("message");
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\n\n${message}`
+    );
+
+    window.location.href = `mailto:rdhrobotics@hotmail.com?subject=RDH Robotics enquiry&body=${body}`;
+    result.innerHTML = "Opening your email app...";
+  });
+</script>
