@@ -1,0 +1,64 @@
+---
+import Container from "@/components/container.astro";
+import Layout from "@/layouts/Layout.astro";
+import ProductCard from "@/components/ProductCard.astro";
+import { Image } from "astro:assets";
+import rfHunter from "@/assets/RF-HUNTER-1 (1).png";
+import usbDByte from "@/assets/1.png";
+
+const products = [
+  { name: "RF Hunter", href: "/products/rf-hunter", image: rfHunter, price: "FROM ₹1,899", text: "Standalone wireless security research platform with OLED controls and web administration.", badges: ["WiFi", "BLE", "RF", "ESP8266"] },
+  { name: "USB D-Byte", href: "/products/usb-d-byte", image: usbDByte, price: "FROM ₹849", text: "Pocket-sized RP2040 platform for HID automation, prototyping, and embedded experiments.", badges: ["USB HID", "RP2040", "Firmware"] },
+];
+const solutions = [
+  ["01", "Cyber Tools", "Security research hardware for authorized testing, training, and resilient industrial workflows."],
+  ["02", "Embedded Systems", "Purpose-built devices that connect clean engineering with practical, field-ready interfaces."],
+  ["03", "Industrial IoT & SCADA", "Sensing, telemetry, and automation foundations for monitored, connected operations."],
+];
+---
+
+<Layout title="Cyber Tools, Embedded Systems & IoT Solutions" description="RDH Robotics creates purpose-built hardware for Cyber Tools, embedded systems, IoT, SCADA, RF engineering, and automation.">
+  <main>
+    <Container class="relative py-12 md:py-20">
+      <section class="grid items-center gap-12 lg:grid-cols-[1.1fr_.9fr] lg:gap-16">
+        <div class="reveal">
+          <p class="eyebrow"><span class="mr-2 inline-block h-2 w-2 rounded-full bg-[#19F28A] shadow-[0_0_12px_#19F28A]"></span>Engineering secure systems / India</p>
+          <h1 class="mt-6 max-w-4xl text-5xl font-semibold leading-[.98] tracking-[-.055em] text-slate-100 sm:text-6xl lg:text-7xl">Cyber Tools<br /><span class="text-gradient">Embedded Systems</span><br />IoT &amp; SCADA Solutions</h1>
+          <p class="mt-7 max-w-xl text-lg leading-8 text-slate-400">Purpose-built hardware for security researchers, industrial engineers and embedded developers.</p>
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a href="#products" class="rounded-lg bg-[#00D4FF] px-5 py-3 font-semibold text-[#031217] transition hover:shadow-[0_0_28px_rgba(0,212,255,.34)]">Explore Products <span aria-hidden="true"></span></a>
+            <a href="https://docs.rdhrobotics.in" class="rounded-lg border border-slate-600 bg-white/5 px-5 py-3 font-semibold text-slate-100 transition hover:border-cyan-300 hover:bg-cyan-300/5">Documentation</a>
+          </div>
+          <dl class="mt-12 grid max-w-xl grid-cols-3 gap-4 border-t border-[#22303C] pt-5">
+            <div><dt class="mono text-[10px] uppercase tracking-wider text-slate-500">Focus</dt><dd class="mt-1 text-sm font-medium">Authorized research</dd></div>
+            <div><dt class="mono text-[10px] uppercase tracking-wider text-slate-500">Stack</dt><dd class="mt-1 text-sm font-medium">Hardware + firmware</dd></div>
+            <div><dt class="mono text-[10px] uppercase tracking-wider text-slate-500">Status</dt><dd class="mt-1 text-sm font-medium text-[#19F28A]">● Systems online</dd></div>
+          </dl>
+        </div>
+        <div class="surface reveal relative overflow-hidden rounded-2xl p-3 [animation-delay:160ms]">
+          <div class="rounded-xl border border-cyan-300/15 bg-[#060b10] p-5 shadow-[inset_0_0_45px_rgba(0,212,255,.04)]">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-4"><span class="mono text-xs text-slate-400">rdh@core:~ $ system-status</span><span class="flex gap-1.5"><i class="h-2 w-2 rounded-full bg-[#FF3B5C]"></i><i class="h-2 w-2 rounded-full bg-[#FFC857]"></i><i class="h-2 w-2 rounded-full bg-[#19F28A]"></i></span></div>
+            <div class="mono space-y-4 py-7 text-xs leading-6 sm:text-sm"><p class="text-cyan-300">&gt; Initializing secure hardware layer...</p><p class="text-slate-400">[<span class="text-[#19F28A]">OK</span>] RF interface ready<br />[<span class="text-[#19F28A]">OK</span>] Firmware verification passed<br />[<span class="text-[#19F28A]">OK</span>] Telemetry channel encrypted</p><p class="text-slate-200">Build systems that operate with confidence<span class="inline-block h-4 w-1 animate-pulse bg-cyan-300 align-middle"></span></p></div>
+            <div class="grid grid-cols-3 gap-2"><div class="h-12 rounded border border-cyan-500/20 bg-cyan-500/10"></div><div class="h-12 rounded border border-[#19F28A]/20 bg-[#19F28A]/10"></div><div class="h-12 rounded border border-slate-700 bg-slate-800/60"></div></div>
+          </div>
+        </div>
+      </section>
+    </Container>
+
+    <Container class="py-14 md:py-20">
+      <section id="products" class="scroll-mt-8">
+        <div class="mb-8 flex flex-wrap items-end justify-between gap-5"><div><p class="eyebrow">Hardware platform</p><h2 class="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Research tools, engineered to ship.</h2></div><a href="/products" class="mono text-xs uppercase tracking-wider text-cyan-300 hover:text-white">View all products →</a></div>
+        <div class="grid gap-5 md:grid-cols-2">{products.map((product) => <ProductCard {...product} />)}</div>
+      </section>
+    </Container>
+
+    <section class="border-y border-[#22303C] bg-[#080d12]/80 py-16 md:py-24">
+      <Container><p class="eyebrow">Industrial solutions</p><h2 class="mt-3 max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">From the board level to the operational edge.</h2><div class="mt-10 grid gap-px overflow-hidden rounded-xl border border-[#22303C] bg-[#22303C] md:grid-cols-3">{solutions.map(([number, title, text]) => <article class="bg-[#0d131a] p-6 transition hover:bg-[#111c25]"><span class="mono text-xs text-cyan-300">{number} / RDH</span><h3 class="mt-10 text-xl font-semibold">{title}</h3><p class="mt-3 leading-7 text-slate-400">{text}</p></article>)}</div></Container>
+    </section>
+
+    <Container class="py-16 md:py-24">
+      <section class="grid gap-10 lg:grid-cols-[.9fr_1.1fr]"><div><p class="eyebrow">Built for technical teams</p><h2 class="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Open documentation. Clear specifications. Useful firmware.</h2><p class="mt-5 max-w-md leading-7 text-slate-400">Every device is designed for repeatable learning, development, and authorized research—not black-box guesswork.</p><a href="https://docs.rdhrobotics.in" class="mt-7 inline-flex text-sm font-semibold text-cyan-300 hover:text-white">Browse documentation →</a></div><div class="grid gap-3 sm:grid-cols-2"><article class="surface rounded-xl p-5"><p class="mono text-xs text-[#19F28A]">01 / FIRMWARE</p><h3 class="mt-5 text-lg font-semibold">Latest releases</h3><p class="mt-2 text-sm leading-6 text-slate-400">Versioned source, practical setup notes, and field-focused updates.</p></article><article class="surface rounded-xl p-5"><p class="mono text-xs text-[#FFC857]">02 / SPECIFICATIONS</p><h3 class="mt-5 text-lg font-semibold">Technical by default</h3><p class="mt-2 text-sm leading-6 text-slate-400">Interfaces, power requirements, and component details without ambiguity.</p></article><article class="surface rounded-xl p-5 sm:col-span-2"><p class="mono text-xs text-cyan-300">03 / APPLICATIONS</p><div class="mt-4 flex flex-wrap gap-2">{["RF research", "HID automation", "IoT prototyping", "SCADA monitoring", "Education"].map((item) => <span class="rounded-full border border-slate-700 px-3 py-1.5 text-sm text-slate-300">{item}</span>)}</div></article></div></section>
+      <section class="surface mt-16 rounded-2xl p-7 md:mt-24 md:p-10"><div class="grid items-center gap-6 md:grid-cols-[1fr_auto]"><div><p class="eyebrow">RDH dispatch</p><h2 class="mt-3 text-2xl font-semibold tracking-tight">Firmware drops, hardware notes, and research updates.</h2></div><form class="flex max-w-md flex-col gap-2 sm:flex-row" action="mailto:rdhrobotics@hotmail.com" method="get"><label class="sr-only" for="newsletter-email">Email address</label><input id="newsletter-email" name="subject" type="email" placeholder="your@email.com" class="min-w-0 rounded-lg border border-slate-700 px-4 py-3 text-sm placeholder:text-slate-500 focus:border-cyan-300 focus:outline-none" /><button class="rounded-lg bg-[#19F28A] px-5 py-3 text-sm font-semibold text-[#04140d]">Stay informed</button></form></div></section>
+    </Container>
+  </main>
+</Layout>
