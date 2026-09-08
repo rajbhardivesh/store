@@ -1,0 +1,92 @@
+# RDH Robotics - Comprehensive Technical Reference & Documentation for LLMs
+
+## Overview
+RDH Robotics is an Indian hardware engineering startup founded by Rajbhar Divesh. The company focuses on Cyber Tools, embedded systems development boards, and Industrial IoT/SCADA monitoring solutions.
+
+Primary Domains:
+- Hardware Security & RF Research Platforms (Wi-Fi 802.11 b/g/n, Bluetooth Low Energy 2.4 GHz, Infrared 38 kHz)
+- Human Interface Device (HID) Automation & Microcontroller Platforms (RP2040 Dual ARM Cortex-M0+)
+- Industrial Telemetry, Sensor Hubs, and SCADA Edge Integration
+- In-Browser Hardware Deployment via WebSerial (`https://flasher.rdhrobotics.in`)
+
+---
+
+## Detailed Product Specifications
+
+### 1. RF Hunter - Wireless Security Research & Auditing Tool
+
+**Overview**:
+The RF Hunter is a standalone handheld research device designed for wireless network analysis, packet crafting, RF spectrum experiments, and educational cybersecurity labs.
+
+**System Architecture**:
+- Main Controller: Espressif ESP8266EX 32-bit RISC CPU running at 80 MHz or overclockable to 160 MHz.
+- Auxiliary RF Frontend: Nordic Semiconductor nRF24L01+ transceiver with integrated Power Amplifier (PA) and Low Noise Amplifier (LNA) connected over SPI.
+- Infrared Transceiver: TSOP 1838 38 kHz demodulator receiver and high-output 940nm IR LED transmitter.
+- Display: 1.3-inch monochrome OLED screen (128x64 pixels, SSD1306/SH1106 I2C driver).
+- Inputs: 6 tactile buttons (Up, Down, Left, Right, Select/Enter, Back/Exit).
+- Power Subsystem: 600 mAh 3.7V Lithium-Polymer rechargeable battery with onboard TP4056/similar charging management IC via USB Type-C port.
+
+**Software & Firmware Modules**:
+1. **Jammer Module**:
+   - Transmits constant carrier waves across 2.4 GHz industrial/scientific/medical band using nRF24L01+.
+   - Channel hopping capabilities covering BLE channels and Wi-Fi channels (1 through 14).
+2. **Deauther Suite**:
+   - Spacehuhn 802.11 management frame engine.
+   - Beacon flooding to simulate numerous SSIDs for stress testing.
+   - Probe request/response analysis.
+   - Selective deauthentication frame injection for testing 802.11w Protected Management Frames (PMF).
+3. **WiPhi Module**:
+   - Captive portal configuration and credential harvesting demonstration.
+   - Onboard EEPROM credential storage (stores up to 5 credential sets with persistent survival through power cycles).
+4. **Infrared Module**:
+   - Record and playback 38 kHz modulated signals.
+   - Emulates household and industrial infrared remote controls.
+5. **Simultaneous Dual UI**:
+   - Real-time on-device OLED control interface.
+   - Simultaneous Wi-Fi Access Point web dashboard accessible at `http://192.168.4.1` for rich graphical administration, log extraction, and configuration.
+
+**Pricing & Availability**:
+- Fully Assembled unit: ₹1,899 INR
+- Fully Assembled + Custom Protective Case: ₹1,999 INR
+- Product Page: https://rdhrobotics.in/products/rf-hunter
+- Official Documentation: https://docs.rdhrobotics.in/docs/RF-Hunter
+- Web Flasher: https://flasher.rdhrobotics.in
+
+---
+
+### 2. USB D-Byte - RP2040 HID Automation & Prototyping Board
+
+**Overview**:
+The USB D-Byte is an ultra-compact USB-A dongle powered by the Raspberry Pi RP2040 microcontroller. It functions as a rapid development tool, educational pentesting platform, keystroke injector, and embedded prototype controller.
+
+**System Architecture**:
+- Microcontroller: Raspberry Pi RP2040 (Dual ARM Cortex-M0+ cores @ 133 MHz, 264 KB on-chip SRAM).
+- Flash Memory: 4MB, 8MB, or 16MB high-speed Quad-SPI Flash.
+- Physical Form: USB-A direct plug with PCB thickness designed to fit snugly in standard USB ports (47mm × 18mm × 8mm).
+- Physical Mode Switch: 2-position slide switch toggling between "Attack/Execute" and "Setup/Programming" modes.
+- Pushbuttons: Dedicated hardware Reset and Bootloader buttons for drag-and-drop UF2 programming without unplugging.
+
+**Supported Environments & Languages**:
+- CircuitPython & MicroPython
+- Arduino Core for RP2040 (Earle Philhower core)
+- C/C++ Raspberry Pi Pico SDK
+- BadUSB / DuckyScript execution runtimes
+
+**Pricing & Availability**:
+- 4MB Flash Variant: ₹849 INR
+- 8MB Flash Variant: ₹999 INR
+- 16MB Flash Variant: ₹1,099 INR
+- Product Page: https://rdhrobotics.in/products/usb-d-byte
+- Official Documentation: https://docs.rdhrobotics.in/docs/USB-D-Byte/
+- Web Flasher: https://flasher.rdhrobotics.in
+
+---
+
+## Firmwares & Tools
+- **Web Flasher**: https://flasher.rdhrobotics.in allows zero-installation browser flashing using WebSerial API (supported on Chrome, Edge, Brave, Opera).
+- **Official Docs**: https://docs.rdhrobotics.in hosts schematics, tutorials, guides, and firmware bin/uf2 files.
+- **Support**: rdhrobotics@hotmail.com / support@rdhrobotics.in
+
+## Ethical Usage & Compliance Notice
+RDH Robotics products are designed exclusively for legal educational instruction, authorized security assessments, defensive engineering, and embedded systems development. Users must obtain explicit written authorization before conducting research on networks or systems they do not own.
+

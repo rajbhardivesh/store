@@ -1,0 +1,123 @@
+---
+import ProductPage from "@/components/ProductPage.astro";
+import Layout from "@/layouts/Layout.astro";
+import rfHunter from "@/assets/RF-HUNTER-1 (1).png";
+import RFHUNTER1 from "@/assets/RF-HUNTER-1 (7).png";
+import RFHUNTER2 from "@/assets/RF-HUNTER-1 (8).png";
+import RFHUNTER3 from "@/assets/RF-HUNTER-1 (10).png";
+import RFHUNTER4 from "@/assets/RF-HUNTER-1 (11).png";
+
+const sections = [
+  {
+    title: "Four research modules",
+    body: [
+      "Jammer: nRF24 constant carrier jammer for BLE + all 2.4 GHz or Wi-Fi channels only.",
+      "Deauther Suite: powered by the open-source spacehuhn deauther engine. Scan, select, deauth, beacon flood, and probe attack.",
+      "WiPhi: Deauth + EvilTwin + captive portal credential harvester with EEPROM vault.",
+      "Infared: 38 kHz IR transmitter and receiver for emulating IR remote controls and devices.",
+    ],
+  },
+  {
+    title: "Standalone controls",
+    body: [
+      "Everything is controlled from the 128x64 OLED display and keypad, or from any phone or laptop via the built-in web admin panel at 192.168.4.1. Captured data saves to onboard EEPROM and survives power cycles.",
+      "The firmware is fully open source. All four tools share a clean, consistent menu UI. Adding new research modules takes three lines of code.",
+    ],
+  },
+  {
+    title: "What's in the box",
+    body: [
+      "RF-Hunter assembled and tested unit.",
+      "Quick-start card with default AP credentials and web UI address.",
+    ],
+  },
+];
+
+const specs = [
+  { label: "MCU", value: "ESP8266 @ 80/160 MHz, 2.4 GHz Wi-Fi" },
+  { label: "RF module", value: "nRF24L01+ PA+LNA" },
+  { label: "IR module", value: "TSOP 1838 38 kHz IR transmitter and receiver" },
+  { label: "Display", value: "1.3 OLED," },
+  { label: "Input", value: "6-button keypad" },
+  { label: "Storage", value: "EEPROM with 5-slot credential vault" },
+  { label: "Interface", value: "OLED UI + web admin panel, simultaneous" },
+  { label: "Battery", value: "600 Mah 3.7V Li-Polymer" },
+  { label: "Connection", value: "USB C" },
+  { label: "Charging", value: "Built-in Charging" },
+
+  { label: "Firmware", value: "Open source, Arduino/ESP8266 toolchain" },
+];
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Product",
+      "name": "RF Hunter - Wireless Security Research Tool",
+      "image": "https://rdhrobotics.in/opengraph.png",
+      "description": "Standalone wireless security research platform with ESP8266, nRF24L01+, OLED controls, IR module, deauther, jammer, and evil twin capabilities.",
+      "sku": "RF-HUNTER-V1",
+      "brand": {
+        "@type": "Brand",
+        "name": "RDH Robotics"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "INR",
+        "lowPrice": "1899",
+        "highPrice": "1999",
+        "offerCount": "2",
+        "availability": "https://schema.org/InStock",
+        "url": "https://rdhrobotics.in/products/rf-hunter"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://rdhrobotics.in"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Products",
+          "item": "https://rdhrobotics.in/products"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "RF Hunter",
+          "item": "https://rdhrobotics.in/products/rf-hunter"
+        }
+      ]
+    }
+  ]
+};
+---
+
+<Layout
+  title="RF Hunter - Wireless Security Research Tool"
+  description="The RF Hunter is a standalone wireless security research platform with deauther, jammer, and evil twin capabilities. Built with ESP8266, nRF24L01, OLED and IR module."
+  keywords={["RF Hunter", "Deauther", "Jammer", "Wireless Security Research", "ESP8266", "nRF24L01", "EvilTwin", "Web Flasher", "RDH Robotics India"]}
+  type="product"
+  schema={productSchema}
+>
+  <ProductPage
+    title="RF Hunter"
+    subtitle="Deauth. Jam. Capture. Replay. All Standalone"
+    image={rfHunter}
+    gallery={[RFHUNTER1, RFHUNTER2, RFHUNTER3, RFHUNTER4]}
+    variants={[
+      { name: "Fully Assembled", price: 1899 },
+      { name: "Fully Assembled + Case", price: 1999 },
+    ]}
+    intro="Learn wireless security hands-on with a device built for it."
+    sections={sections}
+    specs={specs}
+    note="For use only on networks and devices you own or have explicit written permission to test. Unauthorized use against third-party networks is illegal. This device is sold for educational and authorized security research purposes only."
+    docURL="https://docs.rdhrobotics.in/docs/RF-Hunter"
+  />
+</Layout>
