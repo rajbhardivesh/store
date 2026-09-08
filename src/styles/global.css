@@ -47,9 +47,9 @@ body .text-white { color: #021318 !important; }
 body .text-neutral-950, body .text-neutral-900, body .text-neutral-800, body .text-neutral-700 { color: #e6edf5 !important; }
 body .text-neutral-600, body .text-neutral-500 { color: var(--rdh-muted) !important; }
 body .border-neutral-200, body .border-neutral-300 { border-color: var(--rdh-line) !important; }
-body .hover\\:text-neutral-950:hover { color: var(--rdh-cyan) !important; }
-body .hover\\:border-neutral-950:hover { border-color: var(--rdh-cyan) !important; }
-body .hover\\:bg-neutral-100:hover { background-color: #17232d !important; }
+body .hover\:text-neutral-950:hover { color: var(--rdh-cyan) !important; }
+body .hover\:border-neutral-950:hover { border-color: var(--rdh-cyan) !important; }
+body .hover\:bg-neutral-100:hover { background-color: #17232d !important; }
 body .prose { --tw-prose-body: #aab8c8; --tw-prose-headings: #f4f8fb; --tw-prose-links: #00d4ff; --tw-prose-bold: #f4f8fb; --tw-prose-bullets: #00d4ff; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; } }
 

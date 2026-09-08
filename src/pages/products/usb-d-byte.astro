@@ -41,11 +41,63 @@ const specs = [
   { label: "Connector", value: "USB-A Plug" },
   { label: "Controls", value: "Reset & Boot Button" },
 ];
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Product",
+      "name": "USB D-Byte - RP2040 Development Board",
+      "image": "https://rdhrobotics.in/opengraph.png",
+      "description": "Compact thumb-drive RP2040 USB development board for HID automation, payload testing, and embedded hardware prototyping.",
+      "sku": "USB-DBYTE-RP2040",
+      "brand": {
+        "@type": "Brand",
+        "name": "RDH Robotics"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "INR",
+        "lowPrice": "849",
+        "highPrice": "1099",
+        "offerCount": "3",
+        "availability": "https://schema.org/InStock",
+        "url": "https://rdhrobotics.in/products/usb-d-byte"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://rdhrobotics.in"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Products",
+          "item": "https://rdhrobotics.in/products"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "USB D-Byte",
+          "item": "https://rdhrobotics.in/products/usb-d-byte"
+        }
+      ]
+    }
+  ]
+};
 ---
 
 <Layout
-  title="USB D-Byte - RP2040 Development Board | RDH Robotics"
+  title="USB D-Byte - RP2040 Development Board"
   description="The USB D-Byte is a compact RP2040 development board for HID automation, embedded prototyping, and security experiments. Thumb-drive-sized for portability and ease of use."
+  keywords={["USB D-Byte", "RP2040", "Raspberry Pi Pico", "HID Automation", "BadUSB", "Microcontroller Board", "Hardware Security India", "Web Flasher"]}
+  type="product"
+  schema={productSchema}
 >
   <ProductPage
     title="USB D-Byte"
